@@ -16,3 +16,41 @@ Status: done, open, teacher (assigned to the teacher).
 | 9 | finding | The set code carries the chosen sources, not just the questions, so a teacher who reopens a code can keep swapping within the same sources. | done |
 | 10 | finding | The page boundary test is a text scan, not a proof: it catches other-origin URLs, storage and network APIs, and numbers other than 0 and 1 in app.js (set sizes and DOK levels), but a rule written without numbers could still slip into the page. The browser check and code review cover the rest. | open |
 | 11 | finding | A browser asks for /favicon.ico by itself; the 404 would be a console error. The page names an empty data: icon instead, so no extra request is made. | done |
+| 12 | divergence | The page boundary test grew beyond the plan: it also refuses `innerHTML`, `Math.random`, `Date`, CSS `url(` and `@import`, and checks that the page's Content-Security-Policy limits loads to its own origin. | done |
+| 13 | finding | Set codes name question ids, not question text. If the teacher edits a question in `data/bank.json`, an old code opens the edited question. `bank_version` is not part of the code. | teacher |
+| 14 | worklist | Print gives the student copy only (keys hidden). A teacher who wants a printed key has to copy it from the screen. Decide whether a "print with key" option is wanted. | teacher |
+| 15 | worklist | Simplest form accepts both `5/4` and `1 1/4`. If the class requires mixed numbers, that is a rule change in `crates/core/src/fraction.rs`. | teacher |
+| 16 | finding | After checking, a student sees "matches" or "does not match" per question and the count, never the right answer, so they can try again. The brief asks only for "which answers match the key". | teacher |
+| 17 | finding | The browser check ran in Chromium only (as the brief asks). Safari on iPads and Firefox were not tried. | open |
+| 18 | worklist | Assumption 2 below: the set reaches students through the teacher's own channel (printed sheet with the set code, or the saved file). Confirm that fits the class. | teacher |
+| 19 | worklist | Assumption 3 below: results stay on the student's screen; the teacher collects nothing through the tool. Gathering scores would need student data to leave the device, which the brief says to ask about first. | teacher |
+
+## Three assumptions about how a teacher will use the tool, checked against the brief
+
+1. **The teacher will sometimes want a warm-up from one source.**
+   Brief: "picks one or more source documents" and the example "which
+   questions a warm-up for source B at DOK 3 contains". Against the brief's own
+   bank shape ("3 source documents x 4 DOK levels x 2 questions") this cannot be
+   met: one source at one level has 2 questions and a warm-up needs 3. The
+   brief contradicts itself here. The tool keeps the stated rules (three
+   questions, same sources and level) and refuses with a message that says how
+   many match and what to do. Result: assumption holds, the brief cannot
+   satisfy it; rows 1 and 2, assigned to the teacher.
+
+2. **The set reaches students through a channel the teacher already has (a
+   printed sheet with its set code, or the saved file posted to the class), not
+   through the tool.** Brief: "A student opens the same page on their own
+   device" and "Nothing is sent anywhere". The brief does not say how the set
+   gets to the student; sending it would need a network request, which the
+   brief says not to add without asking. The set code on the printed sheet and
+   the saved file both work offline. Result: consistent with the brief; the
+   delivery channel is the teacher's choice (status: teacher).
+
+3. **Students check their own answers for practice; the teacher does not
+   collect scores through the tool.** Brief: the student "sees which answers
+   match the key", and "any student data beyond what stays on the student's own
+   device" is something I may not decide alone. The tool shows results only on
+   the student's screen and keeps nothing after the page closes. If the teacher
+   expects to gather scores, that needs student data to leave the device: stop
+   and ask, do not build. Result: consistent with the brief; flagged in HANDOFF
+   (status: teacher).
