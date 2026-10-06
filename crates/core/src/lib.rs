@@ -8,3 +8,6 @@ pub mod bank;
 pub mod fraction;
 pub mod code;
 pub mod select;
+pub mod check;
+pub mod sheet;
+pub mod api;
