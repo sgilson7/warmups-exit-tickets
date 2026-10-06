@@ -12,3 +12,5 @@ Status: done, open, teacher (assigned to the teacher).
 | 5 | worklist | DOK 3 and 4 questions ask for reasoning on paper; the tool checks only the final short answer. Review whether those items still earn their DOK label in a 5-minute warm-up. | teacher |
 | 6 | divergence | The fraction reader (planned for step 6) was built in step 2, because checking that a bank's fraction keys are numbers needs it. | done |
 | 7 | finding | `cargo test` stops at the first failing test binary, so a planted break in one file hid the failures of the next. Planted-break runs now use `--no-fail-fast` or name the test file. | done |
+| 8 | finding | An exhaustive test that loops over "every set that can be made" passes when no set can be made. Guard: assert how many cases were checked (44, worked out by hand). | done |
+| 9 | finding | The set code carries the chosen sources, not just the questions, so a teacher who reopens a code can keep swapping within the same sources. | done |
