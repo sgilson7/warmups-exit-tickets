@@ -14,3 +14,5 @@ Status: done, open, teacher (assigned to the teacher).
 | 7 | finding | `cargo test` stops at the first failing test binary, so a planted break in one file hid the failures of the next. Planted-break runs now use `--no-fail-fast` or name the test file. | done |
 | 8 | finding | An exhaustive test that loops over "every set that can be made" passes when no set can be made. Guard: assert how many cases were checked (44, worked out by hand). | done |
 | 9 | finding | The set code carries the chosen sources, not just the questions, so a teacher who reopens a code can keep swapping within the same sources. | done |
+| 10 | finding | The page boundary test is a text scan, not a proof: it catches other-origin URLs, storage and network APIs, and numbers other than 0 and 1 in app.js (set sizes and DOK levels), but a rule written without numbers could still slip into the page. The browser check and code review cover the rest. | open |
+| 11 | finding | A browser asks for /favicon.ico by itself; the 404 would be a console error. The page names an empty data: icon instead, so no extra request is made. | done |
