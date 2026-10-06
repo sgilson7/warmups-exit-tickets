@@ -1,0 +1,200 @@
+{
+  "bank_version": "sample-1",
+  "notice": "SAMPLE CONTENT: these 3 sources and 24 questions were written by the tool's builder to show how the tool works. Review every question, key and DOK label before classroom use.",
+  "sources": [
+    {
+      "id": "A",
+      "title": "Trail Mix Recipe (SAMPLE)",
+      "text": "Trail mix, makes 4 servings: 3/4 cup peanuts, 1/2 cup raisins, 2/3 cup granola, 1/4 cup chocolate chips."
+    },
+    {
+      "id": "B",
+      "title": "Relay Race Legs (SAMPLE)",
+      "text": "Four runners shared a 1-mile relay. Ana ran 1/4 mile, Ben ran 3/8 mile, Cy ran 1/8 mile, and Dee ran the rest of the mile."
+    },
+    {
+      "id": "C",
+      "title": "Community Garden Plan (SAMPLE)",
+      "text": "A community garden has an area of 60 square meters. 1/2 of the garden is vegetables, 1/3 is flowers, and the rest is herbs. Inside the vegetable part, 2/5 is tomatoes."
+    }
+  ],
+  "questions": [
+    {
+      "id": "A1a", "source": "A", "dok": 1,
+      "prompt": "How much granola does the recipe use?",
+      "answer": { "kind": "choice", "options": ["1/2 cup", "2/3 cup", "3/4 cup", "1/4 cup"], "key": "B" }
+    },
+    {
+      "id": "A1b", "source": "A", "dok": 1,
+      "prompt": "Write the amount of peanuts as an equal fraction with a denominator of 8.",
+      "answer": { "kind": "fraction", "key": "6/8", "form": "exact" }
+    },
+    {
+      "id": "A2a", "source": "A", "dok": 2,
+      "prompt": "How many cups of peanuts and raisins are there altogether?",
+      "answer": { "kind": "fraction", "key": "1 1/4", "form": "simplest" },
+      "note": "3/4 + 2/4 = 5/4 = 1 1/4. Both 5/4 and 1 1/4 match."
+    },
+    {
+      "id": "A2b", "source": "A", "dok": 2,
+      "prompt": "Which ingredient has the largest amount?",
+      "answer": { "kind": "choice", "options": ["peanuts", "raisins", "granola", "chocolate chips"], "key": "A" },
+      "note": "3/4 = 9/12 is more than 2/3 = 8/12."
+    },
+    {
+      "id": "A3a", "source": "A", "dok": 3,
+      "prompt": "Maya has only 1/2 cup of peanuts. She keeps every amount in the same proportion. What fraction of the full recipe can she make?",
+      "answer": { "kind": "fraction", "key": "2/3", "form": "value" },
+      "note": "1/2 divided by 3/4 = 2/3."
+    },
+    {
+      "id": "A3b", "source": "A", "dok": 3,
+      "prompt": "Jon says the recipe makes more than 2 cups of trail mix. Choose the best reasoning.",
+      "answer": {
+        "kind": "choice",
+        "options": [
+          "No, because 3/4 + 1/2 + 2/3 + 1/4 = 7/13.",
+          "Yes, because the total is 2 1/6 cups.",
+          "No, because the total is 1 11/12 cups.",
+          "Yes, because every amount is about 1/2 cup."
+        ],
+        "key": "B"
+      },
+      "note": "9/12 + 6/12 + 8/12 + 3/12 = 26/12 = 2 1/6."
+    },
+    {
+      "id": "A4a", "source": "A", "dok": 4,
+      "prompt": "Plan trail mix for 24 servings. On paper, show how you would measure the chocolate chips with only a 1/3-cup scoop. How many cups of chocolate chips are needed in all?",
+      "answer": { "kind": "fraction", "key": "1 1/2", "form": "value" },
+      "note": "24 servings = 6 batches; 6 x 1/4 = 1 1/2 cups (4 and a half 1/3-cup scoops)."
+    },
+    {
+      "id": "A4b", "source": "A", "dok": 4,
+      "prompt": "Design a new trail mix with only three ingredients, each a different fraction of a cup, that makes the same total amount as this recipe. Show your design on paper. What total must your three amounts add up to?",
+      "answer": { "kind": "fraction", "key": "2 1/6", "form": "value" },
+      "note": "The recipe totals 26/12 = 2 1/6 cups; any design must add to that."
+    },
+    {
+      "id": "B1a", "source": "B", "dok": 1,
+      "prompt": "Who ran 3/8 of a mile?",
+      "answer": { "kind": "choice", "options": ["Ana", "Ben", "Cy", "Dee"], "key": "B" }
+    },
+    {
+      "id": "B1b", "source": "B", "dok": 1,
+      "prompt": "Write Ana's distance as an equal fraction with a denominator of 8.",
+      "answer": { "kind": "fraction", "key": "2/8", "form": "exact" }
+    },
+    {
+      "id": "B2a", "source": "B", "dok": 2,
+      "prompt": "How far did Dee run?",
+      "answer": { "kind": "fraction", "key": "1/4", "form": "simplest" },
+      "note": "1 - 2/8 - 3/8 - 1/8 = 2/8 = 1/4."
+    },
+    {
+      "id": "B2b", "source": "B", "dok": 2,
+      "prompt": "Which list orders the runners from shortest leg to longest leg?",
+      "answer": {
+        "kind": "choice",
+        "options": ["Cy, Ana, Dee, Ben", "Ben, Ana, Dee, Cy", "Ana, Cy, Dee, Ben", "Cy, Ben, Ana, Dee"],
+        "key": "A"
+      },
+      "note": "In eighths: Cy 1, Ana 2, Dee 2, Ben 3."
+    },
+    {
+      "id": "B3a", "source": "B", "dok": 3,
+      "prompt": "Ben says he ran farther than Ana and Cy together. Choose the best answer.",
+      "answer": {
+        "kind": "choice",
+        "options": [
+          "Yes, because 3/8 is more than 1/4 + 1/8 = 2/12.",
+          "No, Ana and Cy together ran 3/8 mile, the same as Ben.",
+          "No, Ana and Cy together ran 1/2 mile.",
+          "Yes, because 8 is more than 4."
+        ],
+        "key": "B"
+      },
+      "note": "1/4 + 1/8 = 2/8 + 1/8 = 3/8."
+    },
+    {
+      "id": "B3b", "source": "B", "dok": 3,
+      "prompt": "Next week the same four runners will run 1 1/2 miles. Each leg grows by the same distance. How many miles are added to each leg?",
+      "answer": { "kind": "fraction", "key": "1/8", "form": "value" },
+      "note": "The extra 1/2 mile shared by 4 runners is 1/8 mile each."
+    },
+    {
+      "id": "B4a", "source": "B", "dok": 4,
+      "prompt": "Plan a 1-mile relay for five runners in which every leg is a whole number of eighths of a mile and no two legs are the same length. Investigate on paper, then choose the true statement.",
+      "answer": {
+        "kind": "choice",
+        "options": [
+          "It can be done, for example 1/8, 2/8, 3/8, 1/8, 1/8.",
+          "It cannot be done: five different whole numbers of eighths add up to at least 15/8 mile.",
+          "It can be done if one leg is 0/8 mile.",
+          "It cannot be done, because 8 cannot be split into 5 parts."
+        ],
+        "key": "B"
+      },
+      "note": "1 + 2 + 3 + 4 + 5 = 15 eighths, more than 8 eighths."
+    },
+    {
+      "id": "B4b", "source": "B", "dok": 4,
+      "prompt": "Next month the team runs a 3-mile relay, and each runner keeps the same share of the race as today. Make a training plan on paper. How many miles will Ben run?",
+      "answer": { "kind": "fraction", "key": "1 1/8", "form": "value" },
+      "note": "3 x 3/8 = 9/8 = 1 1/8."
+    },
+    {
+      "id": "C1a", "source": "C", "dok": 1,
+      "prompt": "What fraction of the garden is flowers?",
+      "answer": { "kind": "choice", "options": ["1/2", "1/3", "2/5", "1/6"], "key": "B" }
+    },
+    {
+      "id": "C1b", "source": "C", "dok": 1,
+      "prompt": "How many square meters is half of the garden?",
+      "answer": { "kind": "fraction", "key": "30", "form": "value" }
+    },
+    {
+      "id": "C2a", "source": "C", "dok": 2,
+      "prompt": "What fraction of the garden is herbs?",
+      "answer": { "kind": "fraction", "key": "1/6", "form": "simplest" },
+      "note": "1 - 1/2 - 1/3 = 6/6 - 3/6 - 2/6 = 1/6."
+    },
+    {
+      "id": "C2b", "source": "C", "dok": 2,
+      "prompt": "How many square meters of the garden are flowers?",
+      "answer": { "kind": "fraction", "key": "20", "form": "value" },
+      "note": "1/3 of 60 = 20."
+    },
+    {
+      "id": "C3a", "source": "C", "dok": 3,
+      "prompt": "What fraction of the whole garden is tomatoes?",
+      "answer": { "kind": "fraction", "key": "1/5", "form": "simplest" },
+      "note": "2/5 of 1/2 = 2/10 = 1/5. A common error is 2/5."
+    },
+    {
+      "id": "C3b", "source": "C", "dok": 3,
+      "prompt": "Lena says the herb part is bigger than the tomato part. Choose the best answer.",
+      "answer": {
+        "kind": "choice",
+        "options": [
+          "Yes, because 6 is greater than 5.",
+          "No, herbs are 1/6 of the garden (10 square meters) and tomatoes are 1/5 (12 square meters).",
+          "Yes, herbs are 1/6 and tomatoes are only 2/5 of half.",
+          "No, they are the same size."
+        ],
+        "key": "B"
+      }
+    },
+    {
+      "id": "C4a", "source": "C", "dok": 4,
+      "prompt": "Redesign the garden so the herbs get twice their current share and vegetables stay at 1/2. Sketch your plan on paper. What fraction of the garden is left for flowers?",
+      "answer": { "kind": "fraction", "key": "1/6", "form": "value" },
+      "note": "Herbs 2 x 1/6 = 1/3; flowers 1 - 1/2 - 1/3 = 1/6."
+    },
+    {
+      "id": "C4b", "source": "C", "dok": 4,
+      "prompt": "Each square meter of tomatoes gives 3/4 kg of tomatoes per week. Plan the harvest on paper. How many kilograms will the tomato part give in 4 weeks?",
+      "answer": { "kind": "fraction", "key": "36", "form": "value" },
+      "note": "Tomatoes are 1/5 of 60 = 12 square meters; 12 x 3/4 x 4 = 36 kg."
+    }
+  ]
+}

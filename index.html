@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Warm-ups and Exit Tickets</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="no-print">
+    <h1>Warm-ups and exit tickets</h1>
+    <p id="notice" class="notice"></p>
+    <nav aria-label="Mode">
+      <button type="button" id="mode-teacher" aria-pressed="true">Teacher: make a set</button>
+      <button type="button" id="mode-student" aria-pressed="false">Student: answer a set</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="teacher" aria-label="Teacher">
+      <form id="make-form" class="no-print">
+        <fieldset>
+          <legend>Source documents (choose one or more)</legend>
+          <div id="sources" class="choices"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Depth of Knowledge</legend>
+          <div id="levels" class="choices"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Kind of set</legend>
+          <div id="kinds" class="choices"></div>
+        </fieldset>
+        <button type="submit" id="make">Make the set</button>
+      </form>
+      <div id="teacher-message" class="message no-print" role="alert"></div>
+      <div id="teacher-actions" class="actions no-print" hidden>
+        <button type="button" id="print">Print</button>
+        <button type="button" id="save">Save as file</button>
+      </div>
+      <div id="teacher-set"></div>
+    </section>
+
+    <section id="student" aria-label="Student" hidden>
+      <form id="open-form" class="no-print">
+        <label for="code-input">Set code</label>
+        <input id="code-input" autocomplete="off" spellcheck="false" placeholder="W3-AB-A3A-B3A-A3B">
+        <button type="submit" id="open">Open the set</button>
+        <label for="file-input" class="file-label">or open a saved set file</label>
+        <input type="file" id="file-input" accept=".txt,text/plain">
+      </form>
+      <div id="student-message" class="message" role="alert"></div>
+      <form id="answer-form">
+        <div id="student-set"></div>
+        <button type="submit" id="check" hidden>Check my answers</button>
+      </form>
+      <p id="summary" class="summary" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="no-print">
+    <p>This page runs only in this browser. Nothing typed here is sent anywhere or stored.</p>
+  </footer>
+</body>
+</html>
