@@ -1,0 +1,13 @@
+[package]
+name = "warmups-wasm"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Thin wasm-bindgen shim: passes strings between the page and warmups-core. Decides nothing."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+warmups-core = { path = "../core" }
+wasm-bindgen = "=0.2.127"

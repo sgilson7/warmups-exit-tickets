@@ -10,3 +10,5 @@ Status: done, open, teacher (assigned to the teacher).
 | 3 | finding | A single-source exit ticket uses both matching questions, so nothing is left to swap in. The core says so and the swap button is disabled. | done |
 | 4 | finding | A static page with no server ships the answer key to every device (it is in `data/bank.json`). A determined student can read it. Fine for warm-ups; not for graded tests. | teacher |
 | 5 | worklist | DOK 3 and 4 questions ask for reasoning on paper; the tool checks only the final short answer. Review whether those items still earn their DOK label in a 5-minute warm-up. | teacher |
+| 6 | divergence | The fraction reader (planned for step 6) was built in step 2, because checking that a bank's fraction keys are numbers needs it. | done |
+| 7 | finding | `cargo test` stops at the first failing test binary, so a planted break in one file hid the failures of the next. Planted-break runs now use `--no-fail-fast` or name the test file. | done |
