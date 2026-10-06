@@ -95,6 +95,6 @@ fn wrong_number_of_answers_is_refused() {
     let set = decode(&b, "E3-B-B3A-B3B").unwrap();
     assert_eq!(
         check(&b, &set, &["B".to_string()]).unwrap_err(),
-        "This set has 2 questions, but 1 answers were given."
+        "This set has 2 questions, but 1 answer was given."
     );
 }

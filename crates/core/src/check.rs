@@ -54,8 +54,9 @@ impl Score {
 /// Mark every answer in the set, in order. One answer per question.
 pub fn check(bank: &Bank, set: &ProblemSet, answers: &[String]) -> Result<Score, String> {
     if answers.len() != set.questions.len() {
+        let given = if answers.len() == 1 { "answer was" } else { "answers were" };
         return Err(format!(
-            "This set has {} questions, but {} answers were given.",
+            "This set has {} questions, but {} {given} given.",
             set.questions.len(),
             answers.len()
         ));
