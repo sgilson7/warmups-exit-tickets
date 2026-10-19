@@ -188,7 +188,28 @@ function setMode(student) {
   el('mode-student').setAttribute('aria-pressed', String(student));
 }
 
+// Whether this browser can start WebAssembly at all. A school policy that
+// blocks the JavaScript JIT (Chrome's DefaultJavaScriptJitSetting) removes
+// WebAssembly or makes compiling fail. The probe compiles the smallest valid
+// module, the 8-byte header, so a missing or damaged pkg file is not mistaken
+// for a blocked browser.
+async function webAssemblyWorks() {
+  if (typeof WebAssembly === 'undefined') return false;
+  try {
+    await WebAssembly.compile(new TextEncoder().encode('\0asm\x01\0\0\0'));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 async function start() {
+  if (!(await webAssemblyWorks())) {
+    el('wasm-blocked').hidden = false;
+    document.querySelector('nav').hidden = true;
+    document.querySelector('main').hidden = true;
+    return;
+  }
   await init();
   const response = await fetch('data/bank.json');
   state.bank = await response.text();

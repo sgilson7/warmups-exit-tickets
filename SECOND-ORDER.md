@@ -24,6 +24,13 @@ Status: done, open, teacher (assigned to the teacher).
 | 17 | finding | The browser check ran in Chromium only (as the brief asks). Safari on iPads and Firefox were not tried. | open |
 | 18 | worklist | Assumption 2 below: the set reaches students through the teacher's own channel (printed sheet with the set code, or the saved file). Confirm that fits the class. | teacher |
 | 19 | worklist | Assumption 3 below: results stay on the student's screen; the teacher collects nothing through the tool. Gathering scores would need student data to leave the device, which the brief says to ask about first. | teacher |
+| 20 | divergence | The CSP now follows Builder's privacy kit exactly (adds `font-src`, `frame-src`, `worker-src`, `manifest-src 'none'`) plus `<meta name="referrer" content="no-referrer">`. No extra directive was needed. `boundary.rs::page_sets_the_privacy_content_security_policy_and_no_referrer` fails on a missing, loosened or added directive. | done |
+| 21 | divergence | The kit's browser checks were added to the existing `tests/browser_check.py`, which now runs Chromium, Firefox and WebKit (`BUILDER_ENGINES`, `BUILDER_IDLE`) and fails on any request after ready, a CSP violation, or anything in cookies or browser storage at the end. The `--break` modes are kept. | done |
+| 22 | divergence | The "this browser blocks WebAssembly" message sits in `web/index.html`, hidden, and `app.js` unhides it. Every other message comes from the core, but this one cannot: the core is the WebAssembly that did not start. The page decides "blocked" by compiling the 8-byte empty module first, so a missing `pkg/` file still gets the old "could not start" line. | done |
+| 23 | finding | A page cannot reliably tell when a school policy blocks downloads (Chrome `DownloadRestrictions`) or the file chooser (`AllowFileSelectionDialogs`); both fail silently. The save and open controls carry a static help line instead. | done |
+| 24 | worklist | The blocked message and the help lines name `sgilson7.github.io`. A copy hosted elsewhere should change that host name in `web/index.html`. | teacher |
+| 25 | finding | The blocked case is emulated in the browser check (WebAssembly deleted, or compile and instantiate rejected). It was not seen on a real Chromebook under `DefaultJavaScriptJitSetting = block`. | open |
+| 26 | finding | Privacy proof (`tests/prove-privacy.sh`): 10 planted leaks, all caught by the browser check; P1, P2, P4 and P5 also by the boundary scan. Scripts live in `tests/` because the repository has no `scripts/` folder. | done |
 
 ## Three assumptions about how a teacher will use the tool, checked against the brief
 

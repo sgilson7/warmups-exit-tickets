@@ -7,7 +7,13 @@ written in advance. Any question can be swapped for another with the same
 sources and level. The set can be printed or saved as a text file. A student
 opens the same page on their own device, types the set code (or opens the saved
 file), answers, and sees which answers match the key. Nothing is sent anywhere
-and nothing is stored.
+and nothing is stored. The page carries Builder's privacy-kit
+Content-Security-Policy.
+
+If a browser blocks WebAssembly (some school devices do, through a policy that
+blocks the JavaScript JIT), the page says so and says the school's IT can allow
+it for sgilson7.github.io. Next to the save and open controls a short line says
+that a school device may block saving or opening files.
 
 The question bank in `data/bank.json` is SAMPLE content (3 sources x 4 DOK
 levels x 2 questions on fractions), written to show how the tool works.
@@ -21,7 +27,9 @@ levels x 2 questions on fractions), written to show how the tool works.
 | `web/` | `index.html`, `app.js`, `style.css`: draws what the core sends. No framework, bundler or npm. |
 | `data/bank.json` | The question bank. |
 | `build.sh` | Builds the wasm module and assembles `dist/web/`. |
-| `tests/browser_check.py` | Playwright check of `dist/web` in Chromium. |
+| `tests/browser_check.py` | Playwright check of `dist/web` in Chromium, Firefox and WebKit. |
+| `tests/plant_leak.py`, `tests/prove-privacy.sh` | Privacy proof: plants 10 leaks, one at a time, in a copy and requires the checks to catch each. |
+| `LICENSE` | MIT. |
 
 ## Build
 
@@ -39,15 +47,28 @@ copies `web/*` and `data/*.json` into `dist/web/`.
 ## Test
 
 ```sh
-cargo test                                   # 60 tests: rules, hand-computed cases, boundary scans
+cargo test                                   # 62 tests: rules, hand-computed cases, boundary scans
 ./build.sh                                   # the browser check reads dist/web
-python tests/browser_check.py                # needs Python with Playwright and Chromium
+python tests/browser_check.py                # needs Python with Playwright (chromium, firefox, webkit)
+PYTHON=python tests/prove-privacy.sh         # privacy proof, a few minutes
 ```
 
 The browser check serves `dist/web` on 127.0.0.1 at a free port, makes the
 A+B DOK 3 warm-up, swaps a question, saves the file, checks the print view,
 opens the file as a student, answers, and expects "2 of 3 answers match the
-key". It fails on any console error, page error or request to another origin.
+key". It fails on any console error, page error or request to another origin,
+any request at all after the page reported ready, a CSP violation, a
+WebSocket, popup or worker, or anything left in cookies or browser storage. It
+also opens the page with WebAssembly removed and with compiling refused and
+expects the "blocks WebAssembly" message (hidden on a normal run).
+`BUILDER_ENGINES` picks engines; `BUILDER_IDLE` sets the idle after ready
+(default 10 s). The boundary test also requires exactly the privacy kit's
+Content-Security-Policy and `referrer: no-referrer` in `web/index.html`.
+`tests/prove-privacy.sh` plants each leak from `tests/plant_leak.py` (P1 a
+same-origin request carrying the data, P2 localStorage, P3 an off-origin image,
+P4 sendBeacon, P5 an off-origin fetch; each where the student opens a set and
+where answers are checked) in a fresh copy and requires the boundary tests or
+the browser check to catch it.
 `--break console`, `--break request` and `--break score` plant a fault so the
 check can be seen failing.
 

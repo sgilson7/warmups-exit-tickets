@@ -16,14 +16,18 @@ answers match the key. Nothing is sent and nothing is stored.
   serde_json and uses no floats, hash maps, clocks, or input/output.
 - `crates/wasm` is six one-line pass-through functions.
 - `web/` draws the core's replies with `textContent`. Its Content-Security-Policy
-  allows loads from its own origin only.
+  is Builder's privacy-kit policy (own origin only; no fonts, frames, workers
+  or manifest) with `referrer: no-referrer`. If WebAssembly is blocked, the
+  page says so and that school IT can allow it for sgilson7.github.io.
 - `data/bank.json` holds 24 SAMPLE questions on fractions (3 sources x 4 levels
   x 2), each with a key and, for most, a worked note for the teacher.
-- Checks: `cargo test` runs 60 tests (hand-computed sets, swaps, codes, marks
+- Checks: `cargo test` runs 62 tests (hand-computed sets, swaps, codes, marks
   and scores; bank rules; boundary scans of the core's Cargo.toml and source,
   the shim, and the page). `build.sh` produces `dist/web`.
-  `tests/browser_check.py` passes in Chromium with 20 expectations, no console
-  errors, and no other-origin requests. Every test and the browser check were
+  `tests/browser_check.py` passes in Chromium, Firefox and WebKit (34
+  expectations per engine), with no console errors, no other-origin request,
+  no request after ready, no CSP violation and nothing stored.
+  `tests/prove-privacy.sh`: PRIVACY PROOF PASSED, 10 of 10 planted leaks caught. Every test and the browser check were
   seen failing once on purpose; see CORRECTIONS.md.
 
 ## What is open
@@ -42,7 +46,9 @@ answers match the key. Nothing is sent and nothing is stored.
 4. **Old set codes follow bank edits.** A code names question ids, so editing a
    question changes what an old code opens.
 5. **No printed key.** Print gives the student copy; keys are on screen only.
-6. **Only Chromium was tested.** Safari (iPad), Firefox and Chromebooks were not.
+6. **Engines, not devices.** Chromium, Firefox and WebKit (Playwright builds)
+   were checked; real iPads and managed Chromebooks were not. The blocked
+   WebAssembly message was emulated, not seen under a real school policy.
 7. **The page boundary test is a text scan.** It catches URLs, storage and
    network APIs and stray numbers, but not every way a rule could be copied
    into the page.

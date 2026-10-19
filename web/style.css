@@ -109,3 +109,14 @@ footer { color: var(--muted); font-size: 0.85rem; }
   .print-only { display: block; }
   .question { break-inside: avoid; }
 }
+
+.blocked {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-weight: 600;
+}
+.help { flex-basis: 100%; margin: 4px 0 0; font-size: 0.9rem; color: var(--muted); }
+.actions { flex-wrap: wrap; }
